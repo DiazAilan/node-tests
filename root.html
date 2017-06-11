@@ -1,0 +1,12 @@
+<form id="message_form">
+	<label>Message</label>
+	<br>
+	<input type="text" name="message" id="message_input">
+	<input type="submit" value="submit">
+
+	<ul>
+		<li ng-repeat="message in $ctrl.log track by $index">
+			<pre>{{message}}</pre>
+		</li>
+	</ul>
+</form>
