@@ -5,9 +5,13 @@ angular
 	.module('node-tests')
 	.component('root', {
 		templateUrl: 'root.html',
-		controller: class Root {
+		controller: class RootComponent {
 			constructor($scope) {
-				this.$scope = $scope;
+				$scope.$watch(() => {
+					return this.log;
+				}, () => {
+					this.log = this.log;
+				})
 			}
 
 			$onInit() {
