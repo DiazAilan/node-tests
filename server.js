@@ -23,7 +23,7 @@ io.on('connection', (client) => {
 	})
 
 	client.on('cat', () => {
-		const cat = ` 
+		const cat = `
 		 /|     /|
 		{  '---'  }
 		{  O   O  }
@@ -39,6 +39,20 @@ io.on('connection', (client) => {
     	client.broadcast.emit('logs', cat);
     	console.log(cat);
 	});
+
+	client.on('car', () => {
+		const car = `
+		        _______
+		       //  ||| |
+		 _____//___||_| |___
+		 )  _          _    |
+		 |_/ |________/ |___|
+		___|_/________|_/______`
+		client.emit('logs', car);
+    	client.broadcast.emit('logs', car);
+    	console.log(car);
+	});
+
 });
 
 app.use('/', express.static(path.join(__dirname, '')))

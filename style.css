@@ -1,0 +1,9 @@
+body {
+	font-family: sans-serif;
+}
+
+ul {
+	list-style: none;
+	overflow-y: auto;
+	max-height: 80vh;
+}

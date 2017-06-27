@@ -1,12 +1,17 @@
-<form id="message_form">
+<form autocomplete="off" id="message_form" ng-submit="$ctrl.submit()">
 	<label>Message</label>
 	<br>
-	<input type="text" name="message" id="message_input">
-	<input type="submit" value="submit">
-
-	<ul>
-		<li ng-repeat="message in $ctrl.log track by $index">
-			<pre>{{message}}</pre>
-		</li>
-	</ul>
+	<input type="text" name="message" id="message_input" ng-model="$ctrl.input">
+	<input type="submit" value="Submit">	
 </form>
+
+<br>
+
+<button ng-click="$ctrl.cat()">Cat</button>
+<button ng-click="$ctrl.car()">Car</button>
+
+<ul>
+	<li ng-repeat="message in $ctrl.log track by $index">
+		<pre>{{message}}</pre>
+	</li>
+</ul>
