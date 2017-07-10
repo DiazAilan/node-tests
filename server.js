@@ -5,6 +5,8 @@ const path = require('path');
 const server = http.createServer(app);
 const io = require('socket.io')(server);
 
+const asciiArt = require('./ascii');
+
 io.on('connection', (client) => {
 
 	client.on('join', (nickname) => {
@@ -22,36 +24,12 @@ io.on('connection', (client) => {
 		console.log(fullMessage);
 	})
 
-	client.on('cat', () => {
-		const cat = `
-		 /|     /|
-		{  '---'  }
-		{  O   O  }
-		~~>  V  <~~
-		 |   |/  /
-		  '-----'____
-		  /     |    |_
-		 {       }|  )_|_   _
-		 |  |_/  |/ /  |_|_/ )
-		  |__/  /(_/     |__/
-		    (__/`
-    	client.emit('logs', cat);
-    	client.broadcast.emit('logs', cat);
-    	console.log(cat);
-	});
-
-	client.on('car', () => {
-		const car = `
-		        _______
-		       //  ||| |
-		 _____//___||_| |___
-		 )  _          _    |
-		 |_/ |________/ |___|
-		___|_/________|_/______`
-		client.emit('logs', car);
-    	client.broadcast.emit('logs', car);
-    	console.log(car);
-	});
+	client.on('asciiArt', (drawing) => {
+		const art = asciiArt[drawing];
+		client.emit('logs', art);
+		client.broadcast.emit('logs', art);
+		console.log(art);
+	})
 
 });
 

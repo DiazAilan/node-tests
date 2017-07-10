@@ -6,10 +6,12 @@ angular
 	.component('root', {
 		templateUrl: 'root.html',
 		controller: class RootComponent {
-			constructor($timeout) {
+			constructor($timeout, socketService) {
 				this.$timeout = $timeout;
-				//io connects to my private ip; change it to localhost in case of debugging
-				this.socket = io.connect('10.242.10.82:8080');
+				this.socket = socketService.connect('10.242.10.82:8080');
+				console.log(socketService);
+				console.log(this.socket);
+				console.log(io);
 			}
 
 			$onInit() {
@@ -37,12 +39,8 @@ angular
 				this.socket.emit('messages', message);
 			}
 
-			cat() {
-				this.socket.emit('cat');
-			}
-
-			car() {
-				this.socket.emit('car');
+			asciiArt(art) {
+				this.socket.emit('asciiArt', art);
 			}
 
 		}
